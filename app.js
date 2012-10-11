@@ -8,8 +8,8 @@ var db = mongoskin.db(link);
 var record = db.collection('record');
 
 var app = connect();
-app.use(connect.static(path.join(__dirname, "../")));
-app.use(connect.directory(path.join(__dirname, "../")));
+app.use(connect.static(path.join(__dirname, "/public")));
+app.use(connect.directory(path.join(__dirname, "/public")));
 app.use(connect.query());
 app.use(connect.bodyParser());
 app.use("/data", function (req, res, next) {

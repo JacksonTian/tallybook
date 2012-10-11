@@ -1,0 +1,20 @@
+--- 
+applications: 
+  .:
+    command: bin/app.js
+    name: tallybook
+    framework: 
+      name: standalone
+      info: 
+        description: Standalone Application
+        exec: 
+        mem: 64M
+    instances: 1
+    mem: 1G
+    runtime: node08
+    services: 
+      tallybook: 
+        type: redis
+      kwaidb: 
+        type: mongodb
+    url: 
