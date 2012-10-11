@@ -1,0 +1,88 @@
+.hidden {
+	display: none;
+}
+header {
+	border-bottom: 1px solid #678;
+	height: 100px;
+	position: absolute;
+	top: 0;
+	display: block;
+	width: 100%;
+}
+header label {
+	display: inline;
+}
+header input[type=text],
+header select {
+	margin-bottom: 0;
+}
+footer {
+	border-top: 1px solid #789;
+	height: 50px;
+	position: absolute;
+	bottom: 0;
+	display: block;
+	width: 100%;
+}
+#panel {
+	position: absolute;
+	top: 101px;
+	bottom: 51px;
+	width: 100%;
+}
+
+#content {
+	margin-right: 320px;
+	height: 100%;
+	overflow: auto;
+	position: relative;
+}
+#content table {
+	margin: 0 10px;
+}
+#visual {
+	position: absolute;
+	z-index: 10;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: white;
+}
+#container {
+	position: absolute;
+	z-index: 10;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: white;
+}
+aside {
+	width: 320px;
+	height: 100%;
+	float: right;
+	overflow: auto;
+	border-left: 1px solid #333;
+	position: relative;
+}
+aside .hd {
+	padding: 5px;
+}
+aside select {
+	margin-bottom: 0;
+}
+aside ul {
+	padding: 5px;
+}
+aside #fields {
+    border-top: 1px solid #ddd;
+	position: relative;
+	width: 100%;
+	/*top: 62px;*/
+	bottom: 0;
+	overflow: auto;
+}
+
+aside #config {
+    border-top: 1px solid #ddd;
+    padding: 5px;
+}
