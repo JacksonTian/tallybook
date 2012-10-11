@@ -3,8 +3,29 @@ var fs = require('fs');
 var connect = require('connect');
 var mongoskin = require('mongoskin');
 
-var link = '127.0.0.1:27017/mynote?auto_reconnect=true';
-var db = mongoskin.db(link);
+var generateMongoUrl = function () {
+  var mongo;
+  if (process.env.VCAP_SERVICES) {
+    var env = JSON.parse(process.env.VCAP_SERVICES);
+    mongo = env['mongodb-2.0'][0]['credentials'];
+  } else {
+    mongo = {
+      "db": "mynote"
+    };
+  }
+
+  mongo.hostname = (mongo.hostname || 'localhost');
+  mongo.port = (mongo.port || 27017);
+  mongo.db = (mongo.db || 'test');
+
+  if (mongo.username && mongo.password) {
+    return mongo.username + ":" + mongo.password + "@" + mongo.hostname + ":" + mongo.port + "/" + mongo.db;
+  } else {
+    return mongo.hostname + ":" + mongo.port + "/" + mongo.db;
+  }
+};
+
+var db = mongoskin.db(generateMongoUrl());
 var record = db.collection('record');
 
 var app = connect();
@@ -45,5 +66,7 @@ app.use("/all", function (req, res, next) {
   });
 });
 
-app.listen(process.argv[2]);
-console.log("Running at http://localhost:" + process.argv[2]);
+var port = (process.env.VMC_APP_PORT || 3000);
+var host = (process.env.VCAP_APP_HOST || 'localhost');
+app.listen(port, host);
+console.log("Running at http://" + host + ":" + port);
