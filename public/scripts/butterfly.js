@@ -90,7 +90,9 @@ Land("#content", function (view) {
   App.ready("show_chart", function (event) {
     view.$("#visual").removeClass("hidden");
     var source = App.get('render');
-    source = source.map(function (item) {
+    source = source.filter(function (item) {
+      return item.activity && item.amount && $.isNumeric(item.amount);
+    }).map(function (item) {
       return [item["activity"], item["amount"]];
     });
     source = _.zip.apply(_, source);
